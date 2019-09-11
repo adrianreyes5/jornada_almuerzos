@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'CocinaController@index');
+Route::get('/cocina', 'CocinaController@index');
 
 Route::resource('cocina', 'CocinaController');
 // Route::resource('ordenes', 'OrdenController');
@@ -37,3 +37,7 @@ Route::get('bodega', 'BodegaController@index')->name('bodega.index');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
