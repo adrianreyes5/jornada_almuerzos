@@ -13,7 +13,7 @@ class Receta extends Model
     protected $primaryKey = 'id';
 
     public function Receta_Ingredientes() {
-        return $this->hasMany(\App\ingrediente_receta::class,'receta_id');
+        return $this->hasMany(\App\Ingrediente_Receta::class,'receta_id');
     }
 
     public function Orden() {

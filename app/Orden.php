@@ -16,6 +16,10 @@ class Orden extends Model
     ];
     protected $primaryKey = 'id';
 
+    public function user()
+    {
+        return $this->belongsTo(\App\User, 'user_id');
+    }
     public function Compra(){
         return $this->hasMany(\App\Compra::class,'orden_id');
     }

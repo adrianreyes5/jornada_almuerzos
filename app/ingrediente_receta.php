@@ -8,11 +8,11 @@ class ingrediente_receta extends Model
 {
     public $timestamps = false;
 
-    protected $table = "recetas_has_ingredientes";
+    protected $table = "ingrediente_recetas";
     protected $fillable = [
         'receta_id',
         'ingrediente_id',
-        'cantidad_ing'
+        'cantidad'
     ];
     protected $primaryKey = 'id';
 
