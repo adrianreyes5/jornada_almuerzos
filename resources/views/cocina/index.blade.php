@@ -2,18 +2,19 @@
 @section('content')
 <div class="content">
     <div class="row d-flex justify-content-around">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header bg-dark">
-                    <a href="{{ route('cocina.create') }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i><strong> Pedir Orden</strong> </a>
-                </div>
+        <div class="col-lg-10">
+            <div class="card border-top-info">
                 <div class="card-body">
-                    <div class="table-responsive-sm">
-                        <table class="table table-centered mb-0">
+                    <div class="card-title border-bottom">
+                        {{-- <a href="{{ route('cocina.create') }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i><strong> Pedir Orden</strong> </a> --}}
+                        <h6 class="">Ordenes</h6>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-sm tx-nowrap">
                             <thead class="">
-                                <th>Orden</th>
+                                <th>#</th>
                                 <th>Receta</th>
-                                <th class="d-none d-md-table-cell">Fecha</th>
+                                <th class="">Fecha</th>
                                 <th>Estado de entrega</th>
                             </thead>
 
@@ -39,44 +40,39 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer d-flex justify-content-center justify-content-md-end bg-dark">
+                <div class="card-footer d-flex justify-content-center justify-content-md-end">
                     <div class="text-dark">
                         {{ $ordenes->onEachSide(1)->links() }}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        {{-- <div class="col-lg-6">
             <div class="card">
-                <div class="card-header bg-dark">
-                    <span class="text-white h5">Ingredientes</span>
-                </div>
                 <div class="card-body">
-                    <div class="row">
-                        <table class="table">
-                            <thead>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Cantidad Disponible</th>
-                            </thead>
+                    <table class="table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Cantidad Disponible</th>
+                        </thead>
 
-                            @if ($ingredientes->isEmpty())
-                                <tbody>
-                                    <td>No hay Ingredientes</td>
-                                </tbody>
-                            @endif
-                            @foreach ($ingredientes as $key)
-                                <tbody>
-                                    <td>{{$key->id}}</td>
-                                    <td>{{$key->nombre}}</td>
-                                    <td class="text-center text-sm-left">{{$key->cantidad}}</td>
-                                </tbody>
-                            @endforeach
-                        </table>
-                    </div>
+                        @if ($ingredientes->isEmpty())
+                            <tbody>
+                                <td>No hay Ingredientes</td>
+                            </tbody>
+                        @endif
+                        @foreach ($ingredientes as $key)
+                            <tbody>
+                                <td>{{$key->id}}</td>
+                                <td>{{$key->nombre}}</td>
+                                <td class="text-center text-sm-left">{{$key->cantidad}}</td>
+                            </tbody>
+                        @endforeach
+                    </table>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- <div class="col-lg-6">
             <div class="card">
                 <div class="card-header bg-cyan">
