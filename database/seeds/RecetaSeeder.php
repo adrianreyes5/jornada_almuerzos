@@ -30,5 +30,17 @@ class RecetaSeeder extends Seeder
         DB::table('recetas')->insert([
             'nombre' => 'receta 6'
         ]);
+        DB::table('recetas')->insert([
+            'nombre' => 'receta 7'
+        ]);
+        DB::table('recetas')->insert([
+            'nombre' => 'receta 8'
+        ]);
+        DB::table('recetas')->insert([
+            'nombre' => 'receta 9'
+        ]);
+        DB::table('recetas')->insert([
+            'nombre' => 'receta 10'
+        ]);
     }
 }

@@ -14,43 +14,53 @@ class IngredienteSeeder extends Seeder
     {
         DB::table('ingredientes')->insert([
             'nombre'    => 'tomato',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '1'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'lemon',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '3'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'potato',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '1'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'rice',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '5'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'ketchup',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '4'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'lettuce',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '1'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'onion',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '1'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'cheese',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '6'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'meat',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '2'
         ]);
         DB::table('ingredientes')->insert([
             'nombre'    => 'chicken',
-            'cantidad'  =>   '5',
+            'cantidad'  =>   '10',
+            'tipo_ingrediente_id' => '2'
         ]);
     }
 }
