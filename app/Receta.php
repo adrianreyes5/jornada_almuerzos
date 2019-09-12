@@ -12,7 +12,7 @@ class Receta extends Model
     protected $fillable = ['nombre'];
     protected $primaryKey = 'id';
 
-    public function Receta_Ingredientes() {
+    public function RecetaIngredientes() {
         return $this->hasMany(\App\Ingrediente_Receta::class,'receta_id');
     }
 
@@ -20,37 +20,27 @@ class Receta extends Model
         return $this->hasMany(\App\Orden::class,'receta_id');
     }
 
-    public  static function Aleatoria() {
+    public function scopeAleatoria() {
         $receta = Receta::all();
         $aleatoria = rand(1,$receta->count());
-
         $aleatoria = Receta::find($aleatoria);
 
         return $aleatoria;
     }
 
-    public function Ingredientes($receta_id) {
+    public function RecetaNoDisp($id) {
+        $recetas = $this->RecetaIngredientes()->whereReceta_id($id)->get();
+        $noDisp = array();
 
-        $ingredientes = $this->Receta_Ingredientes;
-        $no_disponible = [];
+        foreach($recetas as $receta) {
+            $ingrediente = $receta->Ingrediente;
+            $resta = ($ingrediente['cantidad'] - $receta['cantidad']);
 
-        foreach($ingredientes as $ingrediente) {
-            if($ingrediente->receta_id === $receta_id) {
-
-                $ing_receta = $ingrediente->ingrediente;
-
-                /** Si la diferencia entre ingredientes e ingredientes por receta es mayor a 0
-                 *  Entonces Hay ingredientes en la bodega
-                 *  Sino, No hay ingredientes diesponibles
-                 */
-
-                if(($ing_receta->cantidad - $ingrediente->cantidad_ing ) < 0) {
-                    $no_disponible[] = $ing_receta;
-                }
-
+            if( $resta < 0 ) {
+                $noDisp[] = $ingrediente;
             }
         }
-        return  $no_disponible;
+        return $noDisp;
     }
 
     public function IngredientesPorReceta($receta_id) {
