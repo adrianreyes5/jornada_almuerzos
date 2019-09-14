@@ -30,4 +30,8 @@ class Ingrediente extends Model
     {
         return $this->hasMany(\App\ingrediente_receta::class, 'ingrediente_id');
     }
+
+    public function scopegetIngrediente($query,$id) {
+        return $this->find($id);
+    }
 }

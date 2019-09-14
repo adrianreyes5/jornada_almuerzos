@@ -23,4 +23,10 @@ class ingrediente_receta extends Model
     public function Ingrediente() {
         return $this->belongsTo(\App\Ingrediente::class,'ingrediente_id');
     }
+
+    public function scopeIngredientePorReceta($query,$id) {
+        $receta = $this->whereReceta_id($id)->pluck('cantidad','ingrediente_id');
+    
+        return $receta;
+    }
 }

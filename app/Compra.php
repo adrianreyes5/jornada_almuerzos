@@ -16,7 +16,8 @@ class Compra extends Model
         'ingrediente_id',
         'orden_id',
         'cantidad',
-        'fecha'
+        'fecha',
+        'cantidad'
     ];
 
     public function Ingrediente() {

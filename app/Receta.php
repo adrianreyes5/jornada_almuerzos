@@ -28,7 +28,7 @@ class Receta extends Model
         return $aleatoria;
     }
 
-    public function RecetaNoDisp($id) {
+    public function IngredienteNoDisp($id) {
         $recetas = $this->RecetaIngredientes()->whereReceta_id($id)->get();
         $noDisp = array();
 
