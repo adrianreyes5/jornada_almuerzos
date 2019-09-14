@@ -18,26 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/cocina', 'CocinaController@index');
+Route::get('/cocina', 'CocinaController@index')->name('cocina.index');
 
 Route::resource('cocina', 'CocinaController');
-// Route::resource('ordenes', 'OrdenController');
-// Route::resource('recetas', 'RecetaController');
+Route::resource('ordenes', 'OrdenController');
+Route::resource('recetas', 'RecetaController');
 Route::resource('compras', 'CompraController');
-// Route::resource('estado', 'EstadoController');
-// Route::resource('ingredientes', 'IngredienteController');
-// Route::resource('ingrediente_recetas', 'Ingrediente_RecetaController');
+Route::resource('ingredientes', 'IngredienteController');
+Route::resource('ingrediente_recetas', 'Ingrediente_RecetaController');
 
 Route::get('bodega', 'BodegaController@index')->name('bodega.index');
-
-
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
