@@ -2,40 +2,38 @@
 
 namespace App\Jobs;
 
+use App\Compra;
+use App\Ingrediente;
+use App\Ingrediente_Receta;
+use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-use App\Orden;
-use App\Ingrediente;
-use App\Compra;
-use App\ingrediente_receta;
-use App\Receta;
-use GuzzleHttp\Client;
-use Illuminate\Support\Carbon;
-
 class Compras implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-
-    protected $orden;
-    protected $ingrediente;
     protected $receta;
-    protected $ing_cantidad;
+    protected $orden;
+    protected $ingrediente_id;
+    protected $cantidad;
+    protected $acum;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($orden,$ingrediente,$receta,$ing_cantidad)
+    public function __construct($receta, $orden, $ingrediente_id, $cantidad, $acum)
     {
-        $this->orden = $orden;
-        $this->ingrediente = $ingrediente;
         $this->receta = $receta;
-        $this->ing_cantidad = $ing_cantidad;
+        $this->orden = $orden;
+        $this->ingrediente_id = $ingrediente_id;
+        $this->cantidad = $cantidad;
+        $this->acum = $acum;
     }
 
     /**
@@ -45,58 +43,49 @@ class Compras implements ShouldQueue
      */
     public function handle()
     {
-        /**Busco la orden, ingrediente, receta y el ingrediente que contiene */
-        $orden = Orden::find($this->orden);
-        $ingrediente = Ingrediente::find($this->ingrediente);
-        $receta = Receta::find($this->receta);
-        $receta_ing =  ingrediente_receta::where('receta_id', $receta->id)->where('ingrediente_id', $ingrediente->id)->first();
-
-        $ing_cantidad = $this->ing_cantidad; /** cantidad actual del ingrediente */
+        $receta = $this->receta;
+        $orden = $this->orden;
+        $ingrediente_id = $this->ingrediente_id;
+        $cantidad = $this->cantidad;
         $comprar = true;
+        $acum = $this->acum;
 
+        $ingrediente = Ingrediente::find($ingrediente_id);
 
-        /** Busco en el mercado */
         $client = new Client();
-        $url = 'https://recruitment.alegra.com/api/farmers-market/buy?ingredient=';
-        $request = $client->get($url.$ingrediente->nombre);
+        $url = 'https://recruitment.alegra.com/api/farmers-market/buy?';
+        $request = $client->get($url . 'ingredient=' . $ingrediente['nombre']);
         $data = json_decode($request->getBody()->getContents());
 
-        if($ing_cantidad >= $receta_ing->cantidad_ing ) {
-            /** Si la cantidad actual es mayor al pedido
-             *  No necesito comprar en el mercado
-             */
-            $resta = ($ing_cantidad - $receta_ing->cantidad_ing);
+        if ($ingrediente->cantidad >= $cantidad) {
+            $resta = ($ingrediente->cantidad - $cantidad);
             $ingrediente->update(['cantidad' => $resta]);
             $comprar = false;
+            // print_r($data->quantitySold);
         }
 
-        /** Si Necesito comprar en el mercado */
-        if($comprar) {
-            if($data->quantitySold > 0) {
+        if ($comprar) {
+            if ($data->quantitySold > 0) {
                 $fecha = Carbon::now();
-                $fecha->format('d-m-Y');
-                /** Sumo la cantidad comprada más la cantidad que tenia */
-                $cantidad_actual = $data->quantitySold + $this->ing_cantidad;
-                $compra = Compra::create([
-                    'ingrediente_id'=>  $ingrediente->id,
-                    'orden_id'      =>  $orden->id,
-                    'cantidad'      =>  $data->quantitySold,
-                    'fecha'         =>  $fecha
-                    /** Genero mi compra */
-                ]);
-
-                if($receta_ing->cantidad_ing <= $cantidad_actual) {
-                    /**Si la cantidad solicitada es menor a la actual
-                     * Resto la diferencia y entrego la orden
-                     */
-                    $resta = ($cantidad_actual - $receta_ing->cantidad_ing);
+                $cantidadActual = $data->quantitySold + $ingrediente->cantidad;
+                $acum = $acum + $cantidadActual;
+                print($acum);
+                $compra = new Compra();
+                $compra->fecha_entrega  = $fecha;
+                $compra->orden_id       = $orden->id;
+                $compra->ingrediente_id = $ingrediente->id;
+                $compra->cantidad       = $data->quantitySold;
+                $compra->save();
+                if ($acum >= $cantidad) {
+                    $resta = ( $acum - $cantidad);
                     $ingrediente->update(['cantidad' => $resta]);
-                    $orden->update(['estado_entrega' => 'Entregado']);
-                }else{
-                    Compras::dispatch($orden->id,$ingrediente->id,$receta->id,$ing_cantidad);
+                    $orden->update(['estado_entrega' => 1]);
+                } else {
+                    Compras::dispatch($receta, $orden, $ingrediente_id, $cantidad, $acum);
+                    // print($ingrediente->nombre);
                 }
-            }else{
-                Compras::dispatch($orden->id,$ingrediente->id,$receta->id,$ing_cantidad);
+            } else {
+                Compras::dispatch($receta, $orden, $ingrediente_id, $cantidad, $acum);
             }
         }
     }
