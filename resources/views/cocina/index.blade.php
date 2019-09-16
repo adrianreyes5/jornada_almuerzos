@@ -2,7 +2,7 @@
 @section('content')
 <div class="content">
     <div class="row d-flex justify-content-around">
-        <div class="col-lg-6">
+        <div class="col-lg-10">
             <div class="card border-top-info">
                 <div class="card-body">
                     <div class="card-title d-flex justify-content-between">
@@ -39,7 +39,7 @@
                                             {{$orden->estado_entrega ? "Entregado" : "En espera"}}
                                         </span>
                                     </td>
-                                    <td>{{$orden->user_id}}</td>
+                                    <td>{{$orden->user->name}}</td>
                                 </tbody>
                             @endforeach
                         </table>
@@ -48,79 +48,6 @@
                 <div class="card-footer d-flex justify-content-center justify-content-md-end">
                     <div class="text-dark">
                         {{ $ordenes->links() }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card border-top-info">
-                <div class="card-body">
-                    <div class="card-title d-flex justify-content-start">
-                        <h6 class="mt-2">Ingredientes</h6>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-borderless table-sm tx-nowrap">
-                            <thead class="border-bottom">
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>cantidad</th>
-                            </thead>
-
-                            @if ($ingredientes->isEmpty())
-                                <tbody>
-                                    <td>No hay Ingredientes</td>
-                                </tbody>
-                            @endif
-
-                            @foreach ($ingredientes as $ingrediente)
-                                <tbody class="">
-                                    <td>{{$ingrediente->id}}</td>
-                                    <td>{{$ingrediente->nombre}}</td>
-                                    <td>{{$ingrediente->cantidad}}</td>
-                                </tbody>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card border-top-info">
-                <div class="card-body">
-                    <div class="card-title d-flex justify-content-between">
-                        <h6 class="mt-2">Compras</h6>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-borderless table-sm tx-nowrap">
-                            <thead class="border-bottom">
-                                <th>#</th>
-                                <th>fecha</th>
-                                <th class="">orden ID</th>
-                                <th>Ingrediente ID</th>
-                                <th>Cantidad</th>
-                            </thead>
-
-                            @if ($compras->isEmpty())
-                                <tbody>
-                                    <td>No hay ordenes</td>
-                                </tbody>
-                            @endif
-
-                            @foreach ($compras as $compra)
-                                <tbody class="">
-                                    <td>{{$compra->id}}</td>
-                                    <td>{{$compra->fecha_entrega}}</td>
-                                    <td>{{$compra->orden_id}}</td>
-                                    <td>{{$compra->Ingrediente->nombre}}</td>
-                                    <td>{{$compra->cantidad}}</td>
-                                </tbody>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
-                <div class="card-footer d-flex justify-content-center justify-content-md-end">
-                    <div class="text-dark">
-                        {{ $compras->links() }}
                     </div>
                 </div>
             </div>

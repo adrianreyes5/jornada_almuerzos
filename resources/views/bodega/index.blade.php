@@ -2,35 +2,35 @@
 @section('content')
 <div class="content">
     <div class="row">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header card-header bg-dark">
-                    <span class="text-white h5"><i class="fas fa-align-justify"></i> Recetas</span>
-                </div>
-                @foreach ($recetas as $receta)
-                    <div class="accordion" id="accordionExample">
-                        <div class="card" style="margin-bottom: 0">
-                            <div class="card-header bg-dark" id="headingOne" style="cursor:pointer" data-toggle="collapse" data-target="#{{$receta->id}}" aria-expanded="false" aria-controls="collapseOne">
-                                <h2 class="mb-0">
-                                <button class="btn btn-link" >
-                                    <span class="text-white" style="text-decoration:none"><i class="fas fa-angle-down"></i> {{ $receta->nombre }}</span>
-                                </button>
-                                </h2>
-                            </div>
-
-                            <div id="{{$receta->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div class="card-body bg-gray-100">
-                                    <span>Ingredientes: </span>
-                                    <ul>
-                                        @foreach ($receta->Receta_Ingredientes as $item)
-                                            <li>{{ $item->Ingrediente->nombre }}: {{ $item->cantidad_ing }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+        <div class="col-lg-4">
+            <div class="card border-top-info">
+                <div class="card-body">
+                    <div class="card-title d-flex justify-content-start">
+                            <h6 class="mt-2">Ingredientes</h6>
                     </div>
-                @endforeach
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-sm tx-nowrap">
+                            <thead class="border-bottom">
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th class="">Cantidad</th>
+                            </thead>
+    
+                            @if ($ingredientes->isEmpty())
+                                <tbody>
+                                    <td>No hay ingredientes</td>
+                                </tbody>
+                            @endif
+    
+                            @foreach ($ingredientes as $ingrediente)
+                                <tbody class="">
+                                    <td>{{$ingrediente->id}}</td>
+                                    <td>{{$ingrediente->nombre}}</td>
+                                    <td class="d-none d-md-table-cell">{{$ingrediente->cantidad}}</td>                            </tbody>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
