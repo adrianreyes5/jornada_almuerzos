@@ -2,12 +2,12 @@
 @section('content')
 <div class="content">
     <div class="row d-flex justify-content-center">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header bg-dark">
-                    <div class="h5 text-white"><i class="far fa-credit-card"></i> Compras</div>
-                </div>
+        <div class="col-lg-10">
+            <div class="card border-top-info">
                 <div class="card-body">
+                    <div class="card-title">
+                        <h6 class="mt-2">Compras</h6>
+                    </div>
                     <div class="row">
                         <table class="table">
                             <thead>
@@ -30,13 +30,13 @@
                                     <td>{{$key->Ingrediente->nombre}}</td>
                                     <td>{{$key->Orden->id}}</td>
                                     <td>{{$key->cantidad}}</td>
-                                    <td  class="d-none d-md-block">{{$key->fecha}}</td>
+                                    <td  class="d-none d-md-block">{{$key->fecha_entrega}}</td>
                                 </tbody>
                             @endforeach
                         </table>
                     </div>
                 </div>
-                <div class="card-footer d-flex justify-content-center justify-content-md-end bg-dark">
+                <div class="card-footer d-flex  justify-content-md-end">
                     <div>
                         {{ $compras->onEachSide(1)->links() }}
                     </div>
