@@ -17,7 +17,7 @@ class ingrediente_receta extends Model
     protected $primaryKey = 'id';
 
     public function Receta() {
-        return $this->belongsTo(\app\Receta::class,'receta_id');
+        return $this->belongsTo(\App\Receta::class,'receta_id');
     }
 
     public function Ingrediente() {
