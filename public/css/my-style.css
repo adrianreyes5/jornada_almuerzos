@@ -1,3 +1,35 @@
 .border-top-info {
-    border-top: 2px solid #4AC6EC !important;
-  }
+    border-top: 2px solid #4ac6ec !important;
+}
+
+.text-green {
+    /* transition: 0.5s ease; */
+    color: #25983f !important;
+}
+.remove-text-success {
+    transition: 1.2s;
+    color: #000 !important;
+}
+.rotate {
+    -webkit-animation: 3s rotate linear infinite;
+    animation: 2s rotate linear infinite;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
