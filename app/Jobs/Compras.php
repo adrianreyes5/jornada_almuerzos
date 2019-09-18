@@ -43,25 +43,24 @@ class Compras implements ShouldQueue
      */
     public function handle()
     {
-        $receta = $this->receta;
-        $orden = $this->orden;
+        $receta         = $this->receta;
+        $orden          = $this->orden;
         $ingrediente_id = $this->ingrediente_id;
-        $cantidad = $this->cantidad;
-        $comprar = true;
-        $acum = $this->acum;
+        $cantidad       = $this->cantidad;
+        $acum           = $this->acum;
+        $comprar        = true;
 
-        $ingrediente = Ingrediente::find($ingrediente_id);
+        $ingrediente    = Ingrediente::find($ingrediente_id);
 
-        $client = new Client();
-        $url = 'https://recruitment.alegra.com/api/farmers-market/buy?';
-        $request = $client->get($url . 'ingredient=' . $ingrediente['nombre']);
-        $data = json_decode($request->getBody()->getContents());
+        $client     = new Client();
+        $url        = 'https://recruitment.alegra.com/api/farmers-market/buy?';
+        $request    = $client->get($url . 'ingredient=' . $ingrediente['nombre']);
+        $data       = json_decode($request->getBody()->getContents());
 
         if ($ingrediente->cantidad >= $cantidad) {
             $resta = ($ingrediente->cantidad - $cantidad);
             $ingrediente->update(['cantidad' => $resta]);
             $comprar = false;
-            // print_r($data->quantitySold);
         }
 
         if ($comprar) {
@@ -69,7 +68,13 @@ class Compras implements ShouldQueue
                 $fecha = Carbon::now();
                 $cantidadActual = $data->quantitySold + $ingrediente->cantidad;
                 $acum = $acum + $cantidadActual;
-                print($acum);
+                print($receta->nombre
+                    . ' - Nombre: '     . $ingrediente->nombre
+                    . ' - Cantidad: '   . $ingrediente->cantidad
+                    . ' - CantidadP: '  . $cantidad
+                    . ' - Mercado: '    . $data->quantitySold
+                    . ' - Acumulardor: '. $acum
+                );
                 $compra = new Compra();
                 $compra->fecha_entrega  = $fecha;
                 $compra->orden_id       = $orden->id;
@@ -77,13 +82,12 @@ class Compras implements ShouldQueue
                 $compra->cantidad       = $data->quantitySold;
                 $compra->save();
                 if ($acum >= $cantidad) {
-                    $resta = ( $acum - $cantidad);
+                    $resta = ($acum - $cantidad);
                     $ingrediente->update(['cantidad' => $resta]);
                     $orden->update(['estado_entrega' => 1]);
+                    $acum = 0;
                 } else {
-                    Compras::dispatch($receta, $orden, $ingrediente_id, $cantidad, $acum);
-                    // print($ingrediente->nombre);
-                }
+                    Compras::dispatch($receta, $orden, $ingrediente_id, $cantidad, $acum);                }
             } else {
                 Compras::dispatch($receta, $orden, $ingrediente_id, $cantidad, $acum);
             }
