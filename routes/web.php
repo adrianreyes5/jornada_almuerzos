@@ -27,4 +27,7 @@ Route::resource('compras', 'CompraController');
 Route::resource('ingredientes', 'IngredienteController');
 Route::resource('ingrediente_recetas', 'Ingrediente_RecetaController');
 
+Route::get('crear-ordenes', 'OrdenController@create')->name('ordenes.create');
+Route::get('crear-pruebas', 'OrdenController@prueba')->name('ordenes.prueba');
 Route::get('bodega', 'BodegaController@index')->name('bodega.index');
+Route::get('cambiar-cantidad', 'IngredienteRecetaController@cambiarCantidad')->name('ingredienteReceta.cambiar');
