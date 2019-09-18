@@ -46,5 +46,6 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/bundle.js') }}"></script>
     <script src="{{ asset('js/active.js')}}"></script>
+    @yield('scripts')
 </body>
 </html>

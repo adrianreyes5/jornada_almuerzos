@@ -41,13 +41,13 @@
                                 <span>ajoydas@example.com</span>
                             </div>
                         </div>
-                        {{-- <a href="#" class="dropdown-item"><i class="ti-user text-default" aria-hidden="true"></i> My profile</a>
+                        <a href="#" class="dropdown-item"><i class="ti-user text-default" aria-hidden="true"></i> My profile</a>
                         <a href="#" class="dropdown-item"><i class="zmdi zmdi-email-open text-success" aria-hidden="true"></i> Messages</a>
                         <a href="#" class="dropdown-item"><i class="ti-settings text-default" aria-hidden="true"></i> Account settings</a>
                         <a href="#" class="dropdown-item"><i class="ti-heart text-purple" aria-hidden="true"></i> Support</a>
                         <a href="{!! route('logout') !!}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                        class="dropdown-item"> --}}
+                        class="dropdown-item">
                         <i class="ti-unlink text-warning" 
                         aria-hidden="true"></i> Sign-out
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
