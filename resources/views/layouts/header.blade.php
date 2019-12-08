@@ -3,7 +3,7 @@
     <div class="left-side-content-area d-flex align-items-center">
         <!-- Mobile Logo -->
         <div class="mobile-logo mr-3 mr-sm-4">
-            <a href="index.html"><img src="{{ asset('img/small-logo.png')}}" alt="Mobile Logo"></a>
+            <a href="index.html"><img src="{{ asset('img/small-lunch.png')}}" alt="Mobile Logo"></a>
         </div>
 
         <!-- Triggers -->
@@ -37,14 +37,14 @@
                             </div>
                             <!-- Profile Text -->
                             <div class="profile-text">
-                                <h6>Ajoy Das</h6>
-                                <span>ajoydas@example.com</span>
+                                <h6>{{ Auth::user()->name }}</h6>
+                                <span>{{ Auth::user()->email }}</span>
                             </div>
                         </div>
-                        <a href="#" class="dropdown-item"><i class="ti-user text-default" aria-hidden="true"></i> My profile</a>
+                        {{-- <a href="#" class="dropdown-item"><i class="ti-user text-default" aria-hidden="true"></i> My profile</a>
                         <a href="#" class="dropdown-item"><i class="zmdi zmdi-email-open text-success" aria-hidden="true"></i> Messages</a>
                         <a href="#" class="dropdown-item"><i class="ti-settings text-default" aria-hidden="true"></i> Account settings</a>
-                        <a href="#" class="dropdown-item"><i class="ti-heart text-purple" aria-hidden="true"></i> Support</a>
+                        <a href="#" class="dropdown-item"><i class="ti-heart text-purple" aria-hidden="true"></i> Support</a> --}}
                         <a href="{!! route('logout') !!}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
                         class="dropdown-item">

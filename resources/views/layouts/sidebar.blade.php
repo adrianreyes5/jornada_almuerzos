@@ -1,7 +1,7 @@
 <div class="ecaps-sidemenu-area">
     {{-- {/* <!-- Desktop Logo --> */} --}}
     <div class="ecaps-logo">
-        <a href="index.html"><img class="desktop-logo" src="{{asset('img/logo.png')}}" alt="Desktop Logo"> <img class="small-logo" src="{{ asset('img/small-logo.png')}}" alt="Mobile Logo"></a>
+        <a href={{ route('cocina.index') }}><img class="desktop-logo" src="{{asset('img/Lunches.png')}}" alt="Desktop Logo"> <img class="small-logo" src="{{ asset('img/small-lunch.png')}}" alt="Mobile Logo"></a>
     </div>
 
     {{-- {/* <!-- Side Nav --> */} --}}
