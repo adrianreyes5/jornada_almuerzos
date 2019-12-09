@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ingrediente_receta extends Model
+class Ingrediente_Receta extends Model
 {
     public $timestamps = false;
 
