@@ -14,7 +14,7 @@
                             <thead class="border-bottom">
                                 <th>#</th>
                                 <th>Receta</th>
-                                <th class="d-none d-md-table-cell">Fechaaa</th>
+                                <th class="d-none d-md-table-cell">Fecha</th>
                                 <th>Estado de entrega</th>
                                 <th>Usuario</th>
                             </thead>

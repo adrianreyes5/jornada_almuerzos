@@ -51,16 +51,18 @@
                                     ">{{$receta->nombre}}</a>
                                     <div id="accordion{{$receta->id}}" class="collapse" data-parent="#accordion">
                                         <div class="card-body">
-                                            <div class="d-flex justify-content-around mb-1">
-                                                <div class="h6">Ingrediente: </div>
-                                                <div class="h6">cantidad:</div>
+                                            <div class="row mb-1">
+                                                <h6 class="col-6 text-center">Ingrediente </h6>
+                                                <h6 class="col-6 text-center">cantidad</h6>
                                             </div>
                                             @foreach ($receta->RecetaIngredientes as $item => $value)
-                                                <div class="d-flex justify-content-around">
-                                                </div>
-                                                <div class="d-flex justify-content-around">
-                                                    <div>{{$value->Ingrediente->nombre}}:</div>
-                                                    <span class="remove-text-green" id="{{$value->id}}">{{$value->cantidad}}</span>
+                                                <div class="row">
+                                                    <div class="col-6 text-center">
+                                                        <span>{{$value->Ingrediente->nombre}}:</span>
+                                                    </div>
+                                                    <div class="col-6 text-center">
+                                                        <span class="remove-text-green" id="{{$value->id}}">{{$value->cantidad}}</span>
+                                                    </div>
                                                 </div>
                                             @endforeach
                                         </div>
