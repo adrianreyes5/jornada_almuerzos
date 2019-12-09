@@ -36,7 +36,7 @@
                                                     @if ($orden->estado_entrega === 1)
                                                         <i class="fas fa-check"></i>
                                                         @else 
-                                                        <i class="fas fa-sync-alt rotate"></i>
+                                                        <i class="fas fa-sync-alt rotate "></i>
                                                         @endif
                                                         {{$orden->estado_entrega ? "Entregado" : "En espera"}}
                                                     </span>
