@@ -68,13 +68,13 @@ class Compras implements ShouldQueue
                 $fecha = Carbon::now();
                 $cantidadActual = $data->quantitySold + $ingrediente->cantidad;
                 $acum = $acum + $cantidadActual;
-                print($receta->nombre
-                    . ' - Nombre: '     . $ingrediente->nombre
-                    . ' - Cantidad: '   . $ingrediente->cantidad
-                    . ' - CantidadP: '  . $cantidad
-                    . ' - Mercado: '    . $data->quantitySold
-                    . ' - Acumulardor: '. $acum
-                );
+                // print($receta->nombre
+                //     . ' - Nombre: '     . $ingrediente->nombre
+                //     . ' - Cantidad: '   . $ingrediente->cantidad
+                //     . ' - CantidadP: '  . $cantidad
+                //     . ' - Mercado: '    . $data->quantitySold
+                //     . ' - Acumulardor: '. $acum
+                // );
                 $compra = new Compra();
                 $compra->fecha_entrega  = $fecha;
                 $compra->orden_id       = $orden->id;
