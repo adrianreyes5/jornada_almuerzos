@@ -27,22 +27,24 @@
 
                             @foreach ($ordenes as $orden)
                                 <tbody class="">
-                                    <td>{{$orden->id}}</td>
-                                    <td>{{$orden->Receta->nombre}}</td>
-                                    <td class="d-none d-md-table-cell">{{$orden->fecha}}</td>
-                                    <td class="{{ $orden->estado_entrega === 1 ? 'badge badge-success-lighten ml-4 my-1' : 'badge badge-danger ml-4 my-1' }}">
-                                            <span>
-                                                @if ($orden->estado_entrega === 1)
-                                                    <i class="fas fa-check"></i>
-                                                @else 
-                                                    <i class="fas fa-sync-alt rotate"></i>
-                                            @endif
-                                            {{$orden->estado_entrega ? "Entregado" : "En espera"}}
-                                        </span>
-                                    </td>
-                                    <td>{{$orden->user->name}}</td>
+                                    @if (Auth::user()->name === $orden->user->name)
+                                        <td>{{$orden->id}}</td>
+                                        <td>{{$orden->Receta->nombre}}</td>
+                                        <td class="d-none d-md-table-cell">{{$orden->fecha}}</td>
+                                        <td class="{{ $orden->estado_entrega === 1 ? 'badge badge-success-lighten ml-4 my-1' : 'badge badge-danger ml-4 my-1' }}">
+                                                <span>
+                                                    @if ($orden->estado_entrega === 1)
+                                                        <i class="fas fa-check"></i>
+                                                        @else 
+                                                        <i class="fas fa-sync-alt rotate"></i>
+                                                        @endif
+                                                        {{$orden->estado_entrega ? "Entregado" : "En espera"}}
+                                                    </span>
+                                        </td>
+                                        <td>{{$orden->user->name}}</td>
+                                    @endif
                                 </tbody>
-                            @endforeach
+                                @endforeach
                         </table>
                     </div>
                 </div>

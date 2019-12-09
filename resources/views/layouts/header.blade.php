@@ -26,14 +26,14 @@
         <!-- Top Bar Nav -->
         <ul class="right-side-content d-flex align-items-center mb-0">
             <li class="nav-item dropdown">
-                <button type="button" class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('img/adrian.jpg')}}" alt="user"></button>
+                <button type="button" class="btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('storage/img/user.png')}}" alt="user"></button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- User Profile Area -->
                     <div class="user-profile-area">
                         <div class="user-profile-heading">
                             <!-- Thumb -->
                             <div class="profile-thumbnail">
-                                <img src="{{asset('img/adrian.jpg')}}" alt="user-image">
+                                <img src="{{asset('storage/img/user.png')}}" alt="user-image">
                             </div>
                             <!-- Profile Text -->
                             <div class="profile-text">
