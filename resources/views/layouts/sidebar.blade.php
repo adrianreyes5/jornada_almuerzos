@@ -14,6 +14,15 @@
                     <li><a href="{{ route('cocina.index')}}"><i class="fas fa-utensils text-primary"></i> <span>Cocina</span></a></li>
                     <li><a href="{{ route('bodega.index')}}"><i class="fas fa-store text-primary"></i> <span>Bodega</span></a></li>
                     <li><a href="{{ route('compras.index')}}"><i class="fas fa-shopping-cart text-primary"></i> <span>Compras</span></a></li>
+                    <li><a href="{{ route('logout')}}"
+                        class="d-md-none"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
+                        <i class="fas fa-sign-out-alt  text-primary"></i>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: none;">
+                            {{ csrf_field() }}
+                        </form> 
+                        <span>Cerrar sesión</span></a></li>
                     {{-- <li class="treeview">
                         <a href="javascript:void(0)"><i class="icon_drive"></i> <span>UI kit</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">

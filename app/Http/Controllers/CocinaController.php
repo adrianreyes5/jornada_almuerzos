@@ -10,7 +10,7 @@ use App\Ingrediente;
 use App\Orden;
 use App\Jobs\Compras;
 use Illuminate\Support\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 class CocinaController extends Controller
 {
     /**
@@ -19,9 +19,9 @@ class CocinaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         Carbon::setLocale('es');
-        $ordenes = Orden::orderBy('id', 'desc')->paginate(5);
+        $ordenes = Orden::where('user_id', Auth::user()->id)->paginate(5);
         $ingredientes = Ingrediente::all();
         $compras = Compra::orderBy('id', 'desc')->paginate(30);
 

@@ -42,7 +42,7 @@
                                 </div>
                             </div>
     
-                            <div class="form-group  d-flex justify-content-between">
+                            {{-- <div class="form-group  d-flex justify-content-between">
                                 <div class="custom-control custom-checkbox">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -59,7 +59,7 @@
                                         </a>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
     
                             <div class="form-group mb-0 text-center">
                                 <button type="submit" class="btn btn-primary btn-block">

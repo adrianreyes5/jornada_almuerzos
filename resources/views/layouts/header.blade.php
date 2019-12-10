@@ -3,7 +3,7 @@
     <div class="left-side-content-area d-flex align-items-center">
         <!-- Mobile Logo -->
         <div class="mobile-logo mr-3 mr-sm-4">
-            <a href="index.html"><img src="{{ asset('img/small-lunch.png')}}" alt="Mobile Logo"></a>
+            <a href="{{ route('cocina.index') }}"><img src="{{ asset('img/small-lunch.png')}}" alt="Mobile Logo"></a>
         </div>
 
         <!-- Triggers -->
@@ -46,15 +46,16 @@
                         <a href="#" class="dropdown-item"><i class="ti-settings text-default" aria-hidden="true"></i> Account settings</a>
                         <a href="#" class="dropdown-item"><i class="ti-heart text-purple" aria-hidden="true"></i> Support</a> --}}
                         <a href="{!! route('logout') !!}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                        class="dropdown-item">
-                        <i class="ti-unlink text-warning" 
-                        aria-hidden="true"></i> Sign-out
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                            style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </a>
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                            class="dropdown-item">
+                            <i class="ti-unlink text-warning" 
+                            aria-hidden="true">
+                            </i> Cerrar sesión
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </a>
                     </div>
                 </div>
             </li>
